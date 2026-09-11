@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BL/BL.csproj" Id="35ea9fd6-caa3-4ac6-b0d2-265c0a0d2ccd" />
+  <Project Path="DL/DL.csproj" Id="5c0a6a24-217c-480c-876d-8ce8a32f55be" />
+  <Project Path="Model/Model.csproj" Id="2b50663f-8c29-481d-a7a7-60613f99f738" />
+  <Project Path="Test-3-Tier/UI.csproj" Id="b5122799-a412-4fd3-8954-d2f7223fef83" />
+</Solution>
