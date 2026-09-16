@@ -24,8 +24,8 @@ namespace BL
         }
         public OperationResult<List<Teacher>> SelectAll()
         {
-            var Teacher = new TeacherDL();
-            return Teacher.SelectAll();
+            var teacher = new TeacherDL();
+            return teacher.SelectAll();
         }
         private OperationResult ValidateInputData(string firstName, string mobile)
         {
