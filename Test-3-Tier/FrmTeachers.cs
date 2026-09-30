@@ -55,7 +55,7 @@ namespace UI
         int pageSize = 50;
         private void FrmTeachers_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("test");
+            //Console.WriteLine("test");
             //List<Action> list = new List<Action>();
             //for (int i = 0; i < 3; i++)
             //{

@@ -14,7 +14,7 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmTeachers());
+            Application.Run(new Form1());
         }
     }
 }

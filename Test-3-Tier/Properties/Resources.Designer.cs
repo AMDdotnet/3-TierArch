@@ -59,5 +59,14 @@ namespace UI.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطای سیستمی رخ داده!.
+        /// </summary>
+        internal static string SystemError {
+            get {
+                return ResourceManager.GetString("SystemError", resourceCulture);
+            }
+        }
     }
 }

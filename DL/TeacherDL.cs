@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Common.Constants;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace DL
                 MobileNumbers = new string[]{"091333","0993332"},
                 FirstName = "ali",
                 LastName = "alavi",
-                Score = 15
+                Score = 16
             },
             new Teacher{Id = 2,
                 MobileNumbers = new string[]{"091333"},FirstName = "reza",LastName = "rezaie",Score = 11},
@@ -81,11 +82,14 @@ namespace DL
             }
             catch (Exception ex)
             {
+
                 return OperationResult.Failure(ex.Message);
             }
         }
         public OperationResult<List<Teacher>> SelectAll()
         {
+            Console.WriteLine("TeacherDL:begin select teacher");
+
             try
             {
                 var ts = _teachers.ToList();
@@ -94,13 +98,16 @@ namespace DL
                 //{
                 //    t.Id = ts.IndexOf(t) + 1;
                 //}
-
+                Console.WriteLine("TeacherDL:begin select teacher");
                 return OperationResult<List<Teacher>>.Success(ts.ToList());
             }
             catch (Exception ex)
             {
-                return OperationResult<List<Teacher>>.Failure(ex.Message);
+                Console.WriteLine("TeacherDL:error select teacher-" + ex.Message);
+                var success = MessageConstants.SuccessMessage;
+                return OperationResult<List<Teacher>>.Failure(MessageConstants.SystemError);
             }
+
         }
         public OperationResult Select(int id)
         {
@@ -115,7 +122,7 @@ namespace DL
             }
             catch (Exception ex)
             {
-                return OperationResult.Failure(ex.Message);
+                return OperationResult<List<Teacher>>.Failure(MessageConstants.SystemError);
             }
         }
         public int SelectTeacherId(string mobile)

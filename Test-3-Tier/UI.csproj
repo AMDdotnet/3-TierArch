@@ -75,11 +75,20 @@
     <EmbeddedResource Include="FrmTeachers.resx">
       <DependentUpon>FrmTeachers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resource.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="Properties\Resource.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -102,6 +111,10 @@
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{35ea9fd6-caa3-4ac6-b0d2-265c0a0d2ccd}</Project>
       <Name>BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{d51fef20-0f9e-44f4-9987-1141efc6b90e}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DL\DL.csproj">
       <Project>{5C0A6A24-217C-480C-876D-8CE8A32F55BE}</Project>

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +51,10 @@
     <Compile Include="TeacherService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{d51fef20-0f9e-44f4-9987-1141efc6b90e}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DL\DL.csproj">
       <Project>{5c0a6a24-217c-480c-876d-8ce8a32f55be}</Project>
       <Name>DL</Name>

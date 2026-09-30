@@ -1,5 +1,6 @@
 ﻿using DL;
 using Model;
+using System;
 using System.Collections.Generic;
 
 namespace BL
@@ -24,8 +25,12 @@ namespace BL
         }
         public OperationResult<List<Teacher>> SelectAll()
         {
+
             var teacher = new TeacherDL();
-            return teacher.SelectAll();
+            Console.WriteLine("TeacherService:begin select teacher");
+            var teachers = teacher.SelectAll();
+            Console.WriteLine("TeacherService:end select teacher");
+            return teachers;
         }
         private OperationResult ValidateInputData(string firstName, string mobile)
         {

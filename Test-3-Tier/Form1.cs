@@ -27,5 +27,12 @@ namespace UI
 
             //insert success
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //Properties.Resources.SystemError
+            var cs = UI.Properties.Settings.Default.ConnectionString;
+            MessageBox.Show(cs);
+        }
     }
 }
