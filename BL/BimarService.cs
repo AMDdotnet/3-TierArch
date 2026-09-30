@@ -7,7 +7,6 @@ namespace BL
     {
         public OperationResult Insert(string firstName, string lastName, string nationalCode)
         {
-            var z = new Ionic.Zip.ZipFile();
             var result = ValidateInputData(firstName, lastName, nationalCode);
             if (!result.IsSuccess)
             {
