@@ -1,4 +1,5 @@
-﻿using DL;
+﻿using Common;
+using DL;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,8 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            ILogger logger = new ConoleLogger();
+            Application.Run(new ValidationTeacher());
         }
     }
 }

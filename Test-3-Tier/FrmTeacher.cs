@@ -29,7 +29,7 @@ namespace UI
 
         private void FillInfo()
         {
-            var teacherService = new TeacherService();
+            var teacherService = new TeacherService(null);
 
             var res = teacherService.SelectAll();
 

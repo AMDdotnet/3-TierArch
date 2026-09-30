@@ -1,4 +1,5 @@
 ﻿using BL;
+using Common;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,14 @@ namespace UI
 {
     public partial class FrmTeachers : Form
     {
-        public FrmTeachers()
+        ILogger _loger;
+        TeacherService teacher;
+        public FrmTeachers(ILogger loger)
         {
             InitializeComponent();
+            _loger = loger;
+            teacher = new TeacherService(_loger);
         }
-        TeacherService teacher = new TeacherService();
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -167,21 +171,21 @@ namespace UI
 
 
             //right join
-    //        var query = departments
-    //.GroupJoin(
-    //    employees,
-    //    dept => dept.Id,
-    //    emp => emp.DepartmentId,
-    //    (dept, empGroup) => new { dept, empGroup }
-    //)
-    //.SelectMany(
-    //    x => x.empGroup.DefaultIfEmpty(),
-    //    (x, emp) => new
-    //    {
-    //        DepartmentName = x.dept.Name,
-    //        EmployeeName = emp != null ? emp.FullName : "بدون کارمند"
-    //    }
-    //);
+            //        var query = departments
+            //.GroupJoin(
+            //    employees,
+            //    dept => dept.Id,
+            //    emp => emp.DepartmentId,
+            //    (dept, empGroup) => new { dept, empGroup }
+            //)
+            //.SelectMany(
+            //    x => x.empGroup.DefaultIfEmpty(),
+            //    (x, emp) => new
+            //    {
+            //        DepartmentName = x.dept.Name,
+            //        EmployeeName = emp != null ? emp.FullName : "بدون کارمند"
+            //    }
+            //);
 
 
             var res = teacher.SelectAll();

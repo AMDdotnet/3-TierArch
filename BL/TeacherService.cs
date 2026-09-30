@@ -1,4 +1,5 @@
-﻿using DL;
+﻿using Common;
+using DL;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,14 @@ namespace BL
 {
     public class TeacherService
     {
+        ILogger _logger;
+        public TeacherService(ILogger logger)
+        {
+            _logger = logger;
+        }
         public OperationResult Insert(string firstName, string mobile)
         {
-            var Teacher = new TeacherDL();
+            var Teacher = new TeacherDL(_logger);
             var result = ValidateInputData(firstName, mobile);
             if (!result.IsSuccess)
             {
@@ -26,10 +32,11 @@ namespace BL
         public OperationResult<List<Teacher>> SelectAll()
         {
 
-            var teacher = new TeacherDL();
-            Console.WriteLine("TeacherService:begin select teacher");
+            var teacher = new TeacherDL(_logger);
+            //FileLogger.Write("TeacherService:begin select teacher");
+            _logger.Write("TeacherService:begin select teacher");
             var teachers = teacher.SelectAll();
-            Console.WriteLine("TeacherService:end select teacher");
+            _logger.Write("TeacherService:end select teacher");
             return teachers;
         }
         private OperationResult ValidateInputData(string firstName, string mobile)

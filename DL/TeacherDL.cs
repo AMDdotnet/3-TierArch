@@ -1,4 +1,5 @@
-﻿using Common.Constants;
+﻿using Common;
+using Common.Constants;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,11 @@ namespace DL
 {
     public class TeacherDL
     {
+        ILogger _logger;
+        public TeacherDL(ILogger logger)
+        {
+            _logger = logger;
+        }
         static List<Teacher> _teachers = new List<Teacher>()
         {
             new Teacher
@@ -88,7 +94,7 @@ namespace DL
         }
         public OperationResult<List<Teacher>> SelectAll()
         {
-            Console.WriteLine("TeacherDL:begin select teacher");
+            _logger.Write("TeacherDL:begin select teacher");
 
             try
             {
@@ -98,12 +104,12 @@ namespace DL
                 //{
                 //    t.Id = ts.IndexOf(t) + 1;
                 //}
-                Console.WriteLine("TeacherDL:begin select teacher");
+                _logger.Write("TeacherDL:begin select teacher");
                 return OperationResult<List<Teacher>>.Success(ts.ToList());
             }
             catch (Exception ex)
             {
-                Console.WriteLine("TeacherDL:error select teacher-" + ex.Message);
+                _logger.Write("TeacherDL:error select teacher-" + ex.Message);
                 var success = MessageConstants.SuccessMessage;
                 return OperationResult<List<Teacher>>.Failure(MessageConstants.SystemError);
             }
