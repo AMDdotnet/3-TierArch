@@ -1,7 +1,6 @@
-﻿using Common;
-using DL;
+﻿using BL.Contracts;
+using Common;
 using Model;
-using System;
 using System.Collections.Generic;
 
 namespace BL
@@ -9,33 +8,33 @@ namespace BL
     public class TeacherService
     {
         ILogger _logger;
-        public TeacherService(ILogger logger)
+        private readonly ITeacherData _teacherData;
+        public TeacherService(ILogger logger, ITeacherData teacherData)
         {
             _logger = logger;
+            _teacherData = teacherData;
         }
         public OperationResult Insert(string firstName, string mobile)
         {
-            var Teacher = new TeacherDL(_logger);
             var result = ValidateInputData(firstName, mobile);
             if (!result.IsSuccess)
             {
                 return result;
             }
-            var isDuplicate = Teacher.SelectTeacherId(mobile) > 0;
+            var isDuplicate = _teacherData.SelectTeacherId(mobile) > 0;
             if (isDuplicate)
             {
                 return OperationResult.Failure("duplicate mobile");
             }
 
-            return Teacher.Insert(firstName, mobile);
+            return _teacherData.Insert(firstName, mobile);
         }
         public OperationResult<List<Teacher>> SelectAll()
         {
 
-            var teacher = new TeacherDL(_logger);
             //FileLogger.Write("TeacherService:begin select teacher");
             _logger.Write("TeacherService:begin select teacher");
-            var teachers = teacher.SelectAll();
+            var teachers = _teacherData.SelectAll();
             _logger.Write("TeacherService:end select teacher");
             return teachers;
         }

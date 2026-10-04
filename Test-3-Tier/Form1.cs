@@ -1,4 +1,4 @@
-﻿using BL;
+﻿using BL.Contracts;
 using System;
 using System.Windows.Forms;
 
@@ -6,15 +6,16 @@ namespace UI
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private readonly IBimarService _bimarService;
+        public Form1(IBimarService bimarService)
         {
             InitializeComponent();
+            _bimarService = bimarService;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var service = new BimarService();
-            var result = service.Insert(
+            var result = _bimarService.Insert(
                 textBox1.Text,
                 textBox2.Text,
                 textBox3.Text);

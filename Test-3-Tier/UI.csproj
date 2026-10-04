@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action.cs" />
     <Compile Include="ConoleLogger.cs" />
     <Compile Include="FileLogger.cs" />
     <Compile Include="Form1.cs">
@@ -53,6 +54,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLessons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLessons.Designer.cs">
+      <DependentUpon>FrmLessons.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmTeacher.cs">
       <SubType>Form</SubType>
@@ -76,6 +83,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLessons.resx">
+      <DependentUpon>FrmLessons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTeacher.resx">
       <DependentUpon>FrmTeacher.cs</DependentUpon>

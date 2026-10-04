@@ -1,10 +1,14 @@
-﻿using DL;
+﻿using BL.Contracts;
 using Model;
 
 namespace BL
 {
-    public class BimarService
+    public class BimarService : IBimarService
     {
+        private readonly IBimarData _bimarData;
+
+        public BimarService(IBimarData bimarData) => _bimarData = bimarData;
+
         public OperationResult Insert(string firstName, string lastName, string nationalCode)
         {
             var result = ValidateInputData(firstName, lastName, nationalCode);
@@ -13,14 +17,13 @@ namespace BL
                 return result;
             }
 
-            var bimar = new BimarData();
-            var isDuplicate = bimar.SelectBimarId(nationalCode) > 0;
+            var isDuplicate = _bimarData.SelectBimarId(nationalCode) > 0;
             if (isDuplicate)
             {
                 return OperationResult.Failure("duplicate national code");
             }
 
-            bool ok = bimar.Insert(firstName, lastName, nationalCode);
+            bool ok = _bimarData.Insert(firstName, lastName, nationalCode);
             if (ok)
                 return OperationResult.Success();
             else

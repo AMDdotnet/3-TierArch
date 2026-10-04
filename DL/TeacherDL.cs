@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using BL.Contracts;
+using Common;
 using Common.Constants;
 using Model;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace DL
 {
-    public class TeacherDL
+    public class TeacherDL : ITeacherData
     {
         ILogger _logger;
         public TeacherDL(ILogger logger)

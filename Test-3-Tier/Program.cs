@@ -1,4 +1,6 @@
-﻿using Common;
+﻿using BL;
+using BL.Contracts;
+using Common;
 using DL;
 using System;
 using System.Windows.Forms;
@@ -16,7 +18,9 @@ namespace UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ILogger logger = new ConoleLogger();
-            Application.Run(new ValidationTeacher());
+            ILessonData lessonData = new LessonData();
+            ILessonService lessonService = new LessonService(lessonData);
+            Application.Run(new FrmLessons(lessonService));
         }
     }
 }

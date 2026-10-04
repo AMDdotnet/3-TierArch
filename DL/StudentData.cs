@@ -1,10 +1,11 @@
-﻿using Model;
+﻿using BL.Contracts;
+using Model;
 using System;
 using System.Collections.Generic;
 
 namespace DL
 {
-    public class StudentData
+    public class StudentData : IStudentData
     {
         static List<StudentDto> _students = new List<StudentDto>();
         public OperationResult Insert(string firstName, string studentCode)

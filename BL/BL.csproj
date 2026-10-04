@@ -45,6 +45,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BimarService.cs" />
+    <Compile Include="Contracts\IBimarData.cs" />
+    <Compile Include="Contracts\IBimarService.cs" />
+    <Compile Include="Contracts\ILessonData.cs" />
+    <Compile Include="Contracts\ILessonService.cs" />
+    <Compile Include="Contracts\IStudentData.cs" />
+    <Compile Include="Contracts\IStudentService.cs" />
+    <Compile Include="Contracts\ITeacherData.cs" />
+    <Compile Include="Contracts\ITeacherService.cs" />
+    <Compile Include="LessonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentService.cs" />
     <Compile Include="TeacherService.cs" />
@@ -53,10 +62,6 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{d51fef20-0f9e-44f4-9987-1141efc6b90e}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DL\DL.csproj">
-      <Project>{5c0a6a24-217c-480c-876d-8ce8a32f55be}</Project>
-      <Name>DL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{2b50663f-8c29-481d-a7a7-60613f99f738}</Project>

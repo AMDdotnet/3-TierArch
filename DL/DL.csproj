@@ -42,11 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BimarData.cs" />
+    <Compile Include="LessonData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentData.cs" />
     <Compile Include="TeacherDL.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{35ea9fd6-caa3-4ac6-b0d2-265c0a0d2ccd}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{d51fef20-0f9e-44f4-9987-1141efc6b90e}</Project>
       <Name>Common</Name>

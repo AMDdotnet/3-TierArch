@@ -1,4 +1,5 @@
 ﻿using BL;
+using BL.Contracts;
 using Common;
 using Model;
 using System;
@@ -16,17 +17,17 @@ namespace UI
     public partial class FrmTeachers : Form
     {
         ILogger _loger;
-        TeacherService teacher;
-        public FrmTeachers(ILogger loger)
+        private readonly ITeacherService _teacherService;
+        public FrmTeachers(ILogger loger, ITeacherService teacherService)
         {
             InitializeComponent();
             _loger = loger;
-            teacher = new TeacherService(_loger);
+            _teacherService = teacherService;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var res = teacher.SelectAll();
+            var res = _teacherService.SelectAll();
             if (!res.IsSuccess)
             {
                 MessageBox.Show(res.Message);
@@ -71,7 +72,7 @@ namespace UI
             //    item();
             //}
 
-            var res = teacher.SelectAll();
+            var res = _teacherService.SelectAll();
             if (!res.IsSuccess)
             {
                 MessageBox.Show(res.Message);
@@ -188,7 +189,7 @@ namespace UI
             //);
 
 
-            var res = teacher.SelectAll();
+            var res = _teacherService.SelectAll();
             if (!res.IsSuccess)
             {
                 MessageBox.Show(res.Message);
@@ -240,7 +241,7 @@ namespace UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var res = teacher.SelectAll();
+            var res = _teacherService.SelectAll();
             if (!res.IsSuccess)
             {
                 MessageBox.Show(res.Message);

@@ -1,4 +1,4 @@
-﻿using DL;
+﻿using BL.Contracts;
 using Model;
 using System.Collections.Generic;
 
@@ -6,26 +6,28 @@ namespace BL
 {
     public class StudentService
     {
+        private readonly IStudentData _studentData;
+
+        public StudentService(IStudentData studentData) => _studentData = studentData;
+
         public OperationResult Insert(string firstName, string studentCode)
         {
-            var student = new StudentData();
             var result = ValidateInputData(firstName, studentCode);
             if (!result.IsSuccess)
             {
                 return result;
             }
-            var isDuplicate = student.SelectStudentId(studentCode) > 0;
+            var isDuplicate = _studentData.SelectStudentId(studentCode) > 0;
             if (isDuplicate)
             {
                 return OperationResult.Failure("duplicate student code");
             }
 
-            return student.Insert(firstName, studentCode);
+            return _studentData.Insert(firstName, studentCode);
         }
         public OperationResult<List<StudentDto>> SelectAll()
         {
-            var student = new StudentData();
-            return student.SelectAll();
+            return _studentData.SelectAll();
         }
         private OperationResult ValidateInputData(string firstName, string studentCode)
         {

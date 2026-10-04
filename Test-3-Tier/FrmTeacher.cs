@@ -1,4 +1,5 @@
 ﻿using BL;
+using BL.Contracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +17,12 @@ namespace UI
     public partial class FrmTeacher : Form
     {
         int _id;
-        public FrmTeacher(int id)
+        private readonly ITeacherService _teacherService;
+        public FrmTeacher(int id, ITeacherService teacherService)
         {
             InitializeComponent();
             _id = id;
+            _teacherService = teacherService;
         }
 
         private void FrmTeacher_Load(object sender, EventArgs e)
@@ -29,9 +32,7 @@ namespace UI
 
         private void FillInfo()
         {
-            var teacherService = new TeacherService(null);
-
-            var res = teacherService.SelectAll();
+            var res = _teacherService.SelectAll();
 
             if (!res.IsSuccess)
             {

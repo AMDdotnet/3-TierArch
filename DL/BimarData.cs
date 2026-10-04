@@ -1,8 +1,9 @@
-﻿using System.Data.SqlClient;
+﻿using BL.Contracts;
+using System.Data.SqlClient;
 
 namespace DL
 {
-    public class BimarData
+    public class BimarData : IBimarData
     {
         public bool Insert(string firstName, string lastName, string nationalCode)
         {
