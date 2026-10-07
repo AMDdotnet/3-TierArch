@@ -17,9 +17,11 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ILogger logger = new ConoleLogger();
+
+            ILogger logger = LoggerFactory.Create(LogType.console);
             ILessonData lessonData = new LessonData();
-            ILessonService lessonService = new LessonService(lessonData);
+            ILessonService lessonService = new LessonService(lessonData, logger);
+
             Application.Run(new FrmLessons(lessonService));
         }
     }

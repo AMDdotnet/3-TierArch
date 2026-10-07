@@ -34,6 +34,7 @@ namespace UI
                 btnUpdate.Enabled = false;
                 lblAct.Text = "Insert Action";
                 panel1.Visible = true;
+                txtId.Visible = false;
                 _action = Action.insert;
             }
         }
@@ -46,6 +47,7 @@ namespace UI
                 btnInsert.Enabled = false;
                 lblAct.Text = "Update Action";
                 panel1.Visible = true;
+                txtId.Visible = true;
                 _action = Action.update;
             }
         }
@@ -105,6 +107,13 @@ namespace UI
                 var units = lessons.Data[i].Units;
                 dataGridView1.Rows.Add(id, name, units);
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = false;
+            btnInsert.Enabled = true;
+            btnUpdate.Enabled = true;
         }
     }
 }

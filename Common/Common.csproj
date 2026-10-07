@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConoleLogger.cs" />
     <Compile Include="Constants\MessageConstants.cs" />
+    <Compile Include="FileLogger.cs" />
     <Compile Include="ILogger.cs" />
+    <Compile Include="LoggerFactory.cs" />
+    <Compile Include="LogType.cs" />
     <Compile Include="NationalCodeValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

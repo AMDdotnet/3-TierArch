@@ -30,21 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnInsert = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUnits = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtUnits = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnOk = new System.Windows.Forms.Button();
             this.lblAct = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
+            this.btnOk = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -64,6 +65,27 @@
             this.dataGridView1.Size = new System.Drawing.Size(562, 464);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // colId
+            // 
+            this.colId.HeaderText = "Id";
+            this.colId.MinimumWidth = 6;
+            this.colId.Name = "colId";
+            this.colId.Width = 125;
+            // 
+            // colName
+            // 
+            this.colName.HeaderText = "Name";
+            this.colName.MinimumWidth = 6;
+            this.colName.Name = "colName";
+            this.colName.Width = 125;
+            // 
+            // colUnits
+            // 
+            this.colUnits.HeaderText = "Units";
+            this.colUnits.MinimumWidth = 6;
+            this.colUnits.Name = "colUnits";
+            this.colUnits.Width = 125;
             // 
             // btnInsert
             // 
@@ -86,27 +108,6 @@
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // colId
-            // 
-            this.colId.HeaderText = "Id";
-            this.colId.MinimumWidth = 6;
-            this.colId.Name = "colId";
-            this.colId.Width = 125;
-            // 
-            // colName
-            // 
-            this.colName.HeaderText = "Name";
-            this.colName.MinimumWidth = 6;
-            this.colName.Name = "colName";
-            this.colName.Width = 125;
-            // 
-            // colUnits
-            // 
-            this.colUnits.HeaderText = "Units";
-            this.colUnits.MinimumWidth = 6;
-            this.colUnits.Name = "colUnits";
-            this.colUnits.Width = 125;
             // 
             // errorProvider1
             // 
@@ -152,6 +153,7 @@
             // 
             this.panel1.Controls.Add(this.lblAct);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOk);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
@@ -164,6 +166,16 @@
             this.panel1.TabIndex = 4;
             this.panel1.Visible = false;
             // 
+            // lblAct
+            // 
+            this.lblAct.AutoSize = true;
+            this.lblAct.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblAct.Location = new System.Drawing.Point(47, 26);
+            this.lblAct.Name = "lblAct";
+            this.lblAct.Size = new System.Drawing.Size(50, 39);
+            this.lblAct.TabIndex = 4;
+            this.lblAct.Text = "---";
+            // 
             // btnOk
             // 
             this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -175,15 +187,15 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // lblAct
+            // label3
             // 
-            this.lblAct.AutoSize = true;
-            this.lblAct.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblAct.Location = new System.Drawing.Point(47, 26);
-            this.lblAct.Name = "lblAct";
-            this.lblAct.Size = new System.Drawing.Size(50, 39);
-            this.lblAct.TabIndex = 4;
-            this.lblAct.Text = "---";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.Location = new System.Drawing.Point(56, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 25);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Id:";
             // 
             // txtId
             // 
@@ -194,15 +206,16 @@
             this.txtId.Size = new System.Drawing.Size(168, 30);
             this.txtId.TabIndex = 2;
             // 
-            // label3
+            // btnCancel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label3.Location = new System.Drawing.Point(56, 95);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 25);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Id:";
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnCancel.Location = new System.Drawing.Point(190, 236);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(81, 37);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // FrmLessons
             // 
@@ -242,5 +255,6 @@
         private System.Windows.Forms.Label lblAct;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
