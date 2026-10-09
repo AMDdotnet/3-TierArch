@@ -1,13 +1,11 @@
-﻿using System;
+﻿using BL.Contracts;
+using Common.Attributes;
+using Common.Extentions;
+using Model;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BL.Contracts;
 
 namespace UI
 {
@@ -15,10 +13,22 @@ namespace UI
     {
         private static Action _action;
         private readonly ILessonService _lessonService;
+        private BindingSource _lessonBindingSource = new BindingSource();
+        private Lesson _currentLesson;
         public FrmLessons(ILessonService lessonService)
         {
             InitializeComponent();
             _lessonService = lessonService;
+
+            _currentLesson = new Lesson("", 1);
+            _lessonBindingSource.DataSource = _currentLesson;
+
+            errorProvider1.DataSource = _lessonBindingSource;
+
+            txtName.DataBindings.Add(
+                "Text", _lessonBindingSource, nameof(Lesson.Name), true, DataSourceUpdateMode.OnPropertyChanged);
+            txtUnits.DataBindings.Add(
+                "Text", _lessonBindingSource, nameof(Lesson.Units), true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void FrmLessons_Load(object sender, EventArgs e)
@@ -54,58 +64,70 @@ namespace UI
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int row = e.RowIndex;
-            txtName.Text = dataGridView1.Rows[row].Cells[colName.Index].Value.ToString();
-            txtUnits.Text = dataGridView1.Rows[row].Cells[colUnits.Index].Value.ToString();
-            txtId.Text = dataGridView1.Rows[row].Cells[colId.Index].Value.ToString();
+            try
+            {
+                int row = e.RowIndex;
+                txtId.Text = dataGridView1.Rows[row].Cells[0].Value.ToString();
+                txtName.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                txtUnits.Text = dataGridView1.Rows[row].Cells[2].Value.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if(_action == Action.insert)
+            this.ValidateChildren();
+
+            if (!_currentLesson.IsValid)
             {
-                var res = _lessonService.Insert(txtName.Text, byte.Parse(txtUnits.Text));
-                if(!res.IsSuccess)
-                {
-                    errorProvider1.SetError(txtName, res.Message);
-                    errorProvider1.SetError(txtUnits, res.Message);
-                }
-                else
-                {
-                    btnInsert.Enabled = true;
-                    btnUpdate.Enabled = true;
-                    panel1.Visible = false;
-                    FillGrid();
-                }
+                MessageBox.Show(_currentLesson.ErrorMessage);
+                return;
             }
-            else if(_action == Action.update)
+
+            if (_action == Action.insert)
             {
-                var res = _lessonService.Update(Guid.Parse(txtId.Text), txtName.Text, byte.Parse(txtUnits.Text));
-                if (!res.IsSuccess)
-                {
-                    errorProvider1.SetError(txtName, res.Message);
-                    errorProvider1.SetError(txtUnits, res.Message);
-                }
-                else
-                {
-                    btnInsert.Enabled = true;
-                    btnUpdate.Enabled = true;
-                    panel1.Visible = false;
-                    FillGrid();
-                }
+                var res = _lessonService.Insert(_currentLesson.Name, _currentLesson.Units);
+
+                btnInsert.Enabled = true;
+                btnUpdate.Enabled = true;
+                panel1.Visible = false;
+                FillGrid();
+            }
+            else if (_action == Action.update)
+            {
+                var res = _lessonService.Update(Guid.Parse(txtId.Text), _currentLesson.Name, _currentLesson.Units);
+
+                btnInsert.Enabled = true;
+                btnUpdate.Enabled = true;
+                panel1.Visible = false;
+                FillGrid();
             }
         }
 
         void FillGrid()
         {
-            dataGridView1.Rows.Clear();
+            dataGridView1.DataSource = null;
             var lessons = _lessonService.GetAll();
-            for (int i = 0; i < lessons.Data.Count; i++)
+            dataGridView1.DataSource = lessons.Data.ToDataTable();
+
+            var lessonMetaData = typeof(Lesson);
+            var lessonProps = lessonMetaData.GetProperties();
+            foreach (var prop in lessonProps)
             {
-                var id = lessons.Data[i].Id;
-                var name = lessons.Data[i].Name;
-                var units = lessons.Data[i].Units;
-                dataGridView1.Rows.Add(id, name, units);
+                var attrs = prop.GetCustomAttributes(false);
+                var attr = attrs.OfType<DgvDisplayAttribute>().FirstOrDefault();
+                if (attr != null)
+                {
+                    dataGridView1.Columns[prop.Name].HeaderText = attr.Title;
+                    dataGridView1.Columns[prop.Name].Visible = attr.Visible;
+                }
+                else
+                {
+                    dataGridView1.Columns[prop.Name].Visible = false;
+                }
             }
         }
 

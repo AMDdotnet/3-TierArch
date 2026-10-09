@@ -35,21 +35,12 @@ namespace DL
         public OperationResult Insert(string name, byte units)
         {
             var newLesson = new Lesson(name, units);
-            if (newLesson.IsValid)
+            _lessons.Add(newLesson);
+            return new OperationResult
             {
-                _lessons.Add(newLesson);
-                return new OperationResult
-                {
-                    IsSuccess = true,
-                    Message = MessageConstants.SuccessMessage
-                };
-            }
-            else
-                return new OperationResult
-                {
-                    IsSuccess = false,
-                    Message = newLesson.ErrorMessage
-                };
+                IsSuccess = true,
+                Message = MessageConstants.SuccessMessage
+            };
         }
 
         public OperationResult Update(Guid id, string name, byte units)
@@ -61,22 +52,13 @@ namespace DL
             var newLesson = new Lesson(name, units);
             newLesson.Id = Lesson.Id;
 
-            if (newLesson.IsValid)
+            _lessons.Remove(Lesson);
+            _lessons.Add(newLesson);
+            return new OperationResult
             {
-                _lessons.Remove(Lesson);
-                _lessons.Add(newLesson);
-                return new OperationResult
-                {
-                    IsSuccess = true,
-                    Message = MessageConstants.SuccessMessage
-                };
-            }
-            else
-                return new OperationResult
-                {
-                    IsSuccess = false,
-                    Message = newLesson.ErrorMessage
-                };
+                IsSuccess = true,
+                Message = MessageConstants.SuccessMessage
+            };
         }
     }
 }

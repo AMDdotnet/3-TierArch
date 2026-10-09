@@ -42,13 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\DgvDisplayAttribute.cs" />
     <Compile Include="ConoleLogger.cs" />
     <Compile Include="Constants\MessageConstants.cs" />
+    <Compile Include="Extentions\ListExtensions.cs" />
     <Compile Include="FileLogger.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="LoggerFactory.cs" />
     <Compile Include="LogType.cs" />
-    <Compile Include="NationalCodeValidationAttribute.cs" />
+    <Compile Include="Attributes\NationalCodeValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
